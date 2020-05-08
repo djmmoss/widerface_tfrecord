@@ -85,20 +85,9 @@ def parse_sample(filename, image_dir, f):
     height, width, channel = image_raw.shape
     print("height is %d, width is %d, channel is %d" % (height, width, channel))
 
-    if is_resize:
-        image_resize = cv2.resize(image_raw, (re_width, re_height))
-        path_pre = os.path.split(filename)[0]
-        path = os.path.join(resize_image_dir, path_pre)
-        if not os.path.exists(path):
-            os.mkdir(path)
 
-        output_img = os.path.join(resize_image_dir, filename)
-        cv2.imwrite(output_img, image_resize)
-        with open(output_img, 'rb') as ff:
-            encoded_image_data = ff.read()
-    else:
-        with open(filepath, 'rb') as ff:
-            encoded_image_data = ff.read()
+    with open(filepath, 'rb') as ff:
+        encoded_image_data = ff.read()
 
     key = hashlib.sha256(encoded_image_data).hexdigest()
     face_num = np.max([int(f.readline().rstrip()), 1])
