@@ -171,9 +171,9 @@ if __name__ == '__main__':
     # Parse Training Set
     annot = 'wider_face_split/wider_face_train_bbx_gt.txt'
     out = 'dataset/wider_face_train.record'
-    wider2tfrecord(annot, "WIDER_train", out)
+    wider2tfrecord(annot, "WIDER_train/images", out)
 
     # Parse Validation Set
     annot = 'wider_face_split/wider_face_val_bbx_gt.txt'
     out = 'dataset/wider_face_val.record'
-    wider2tfrecord(annot, "WIDER_val", out)
+    wider2tfrecord(annot, "WIDER_val/images", out)
