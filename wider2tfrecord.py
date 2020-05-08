@@ -113,22 +113,22 @@ def parse_sample(filename, image_dir, f):
     print("Valid face number is %d" % valid_face_num)
 
     tf_example = tf.train.Example(features=tf.train.Features(feature={
-        'image/height': dataset_util.int64_feature(int(height)),
-        'image/width': dataset_util.int64_feature(int(width)),
-        'image/filename': dataset_util.bytes_feature(filename.encode('utf8')),
-        'image/source_id': dataset_util.bytes_feature(filename.encode('utf8')),
-        'image/key/sha256': dataset_util.bytes_feature(key.encode('utf8')),
-        'image/encoded': dataset_util.bytes_feature(encoded_image_data),
-        'image/format': dataset_util.bytes_feature('jpeg'.encode('utf8')),
-        'image/object/bbox/xmin': dataset_util.float_list_feature(xmins),
-        'image/object/bbox/xmax': dataset_util.float_list_feature(xmaxs),
-        'image/object/bbox/ymin': dataset_util.float_list_feature(ymins),
-        'image/object/bbox/ymax': dataset_util.float_list_feature(ymaxs),
-        'image/object/class/text': dataset_util.bytes_list_feature(classes_text),
-        'image/object/class/label': dataset_util.int64_list_feature(classes),
-        'image/object/difficult': dataset_util.int64_list_feature(int(0)),
-        'image/object/truncated': dataset_util.int64_list_feature(truncated),
-        'image/object/view': dataset_util.bytes_list_feature(poses),
+        'image/height': int64_feature(int(height)),
+        'image/width': int64_feature(int(width)),
+        'image/filename': bytes_feature(filename.encode('utf8')),
+        'image/source_id': bytes_feature(filename.encode('utf8')),
+        'image/key/sha256': bytes_feature(key.encode('utf8')),
+        'image/encoded': bytes_feature(encoded_image_data),
+        'image/format': bytes_feature('jpeg'.encode('utf8')),
+        'image/object/bbox/xmin': float_list_feature(xmins),
+        'image/object/bbox/xmax': float_list_feature(xmaxs),
+        'image/object/bbox/ymin': float_list_feature(ymins),
+        'image/object/bbox/ymax': float_list_feature(ymaxs),
+        'image/object/class/text': bytes_list_feature(classes_text),
+        'image/object/class/label': int64_list_feature(classes),
+        'image/object/difficult': int64_list_feature(int(0)),
+        'image/object/truncated': int64_list_feature(truncated),
+        'image/object/view': bytes_list_feature(poses),
     }))
 
     return valid_face_num, tf_example
